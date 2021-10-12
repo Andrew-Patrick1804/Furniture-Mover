@@ -37,7 +37,7 @@ public class Home {
     private Integer sizeSqrFt;
 
     @Column(name = "home_occupied_sqr_ft")
-    private Integer occupiedSqrFt;
+    private Integer occupiedSqrFt = 0;
 
     @OneToMany(mappedBy = "ownerHome", cascade = CascadeType.ALL)
     private List<Furniture> furniture;

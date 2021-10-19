@@ -12,6 +12,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -92,6 +94,49 @@ class FurnitureServiceTest {
 
         //ACT
         Furniture actualResult = this.furnitureService.deleteFurniture(furnitureId);
+
+        //ASSERT
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void getAllFurnitureForAHome() {
+
+        //ASSIGN
+        Integer homeId = 1;
+
+        Home home = new Home();
+        home.setId(homeId);
+        home.setName("Winterfell");
+        home.setSizeSqrFt(1000);
+
+        Furniture furniture1 = new Furniture();
+        furniture1.setId(1);
+        furniture1.setName("Table");
+        furniture1.setSizeSqrFt(10);
+        furniture1.setOwnerHome(home);
+
+        Furniture furniture2 = new Furniture();
+        furniture2.setId(1);
+        furniture2.setName("Table");
+        furniture2.setSizeSqrFt(10);
+        furniture2.setOwnerHome(home);
+
+        Furniture furniture3 = new Furniture();
+        furniture3.setId(1);
+        furniture3.setName("Table");
+        furniture3.setSizeSqrFt(10);
+        furniture3.setOwnerHome(home);
+
+        List<Furniture> expectedResult = new ArrayList<>();
+        expectedResult.add(furniture1);
+        expectedResult.add(furniture2);
+        expectedResult.add(furniture3);
+
+        Mockito.when(this.furnitureDao.getFurnitureByOwnerHomeId(homeId)).thenReturn(expectedResult);
+
+        //ACT
+        List<Furniture> actualResult = this.furnitureService.getAllFurnitureForAHome(homeId);
 
         //ASSERT
         assertEquals(expectedResult, actualResult);

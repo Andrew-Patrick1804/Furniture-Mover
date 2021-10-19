@@ -30,4 +30,8 @@ public class FurnitureService {
         }
         return null;
     }
+
+    public List<Furniture> getAllFurnitureForAHome(Integer homeId){
+        return this.furnitureDao.getFurnitureByOwnerHomeId(homeId);
+    }
 }

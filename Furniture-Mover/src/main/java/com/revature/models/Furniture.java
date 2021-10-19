@@ -4,6 +4,7 @@ Andrew Patrick 10/12/2021
 
 package com.revature.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class Furniture {
     @Column(name = "furniture_size_sqr_ft", nullable = false)
     private Integer sizeSqrFt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    //@JoinColumn(name = "home_id", nullable = false)
     private Home ownerHome;
 }
